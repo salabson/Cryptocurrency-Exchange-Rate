@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">CryptocurrencyExchangeRate</string>
+    <!--this hold list of cryptocurrency-->
+    <string-array name="cryptocurrency_array">
+        <item>BTC</item>
+        <item>ETH</item>
+    </string-array>
+
+    <string-array name="fiat_currency">
+        <item>USD</item>
+        <item>GBP</item>
+        <item>EUR</item>
+        <item>AUD</item>
+        <item>JPY</item>
+        <item>NGN</item>
+        <item>CHF</item>
+        <item>CAD</item>
+        <item>INR</item>
+        <item>MYR</item>
+        <item>CNY</item>
+        <item>NZD</item>
+        <item>THB</item>
+        <item>HUF</item>
+        <item>AED</item>
+        <item>HKD</item>
+        <item>MXN</item>
+        <item>ZAR</item>
+        <item>BRL</item>
+        <item>SAR</item>
+    </string-array>
+
+
+
+</resources>
