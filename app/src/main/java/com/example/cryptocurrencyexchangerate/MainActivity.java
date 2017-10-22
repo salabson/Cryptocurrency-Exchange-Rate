@@ -24,19 +24,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // get reference to button and linearlayout
-        Button bn_load_card = (Button)findViewById(R.id.btn_load_card);
+        Button btn_load_card = (Button)findViewById(R.id.btn_load_card);
         final LinearLayout container = (LinearLayout)findViewById(R.id.bottom_container);
 
         // poulate spinners
         fillSpinners();
 
 
-        bn_load_card.setOnClickListener(new View.OnClickListener() {
+        btn_load_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                 final View cardView = layoutInflater.inflate(R.layout.layout_row,null);
                 final CardView card_bottom = (CardView)cardView.findViewById(R.id.card_bottom);
+                TextView tv_crypto = (TextView)cardView.findViewById(R.id.tv_crypto);
+                tv_crypto.setText(spinner_cryptocurrency.getSelectedItem().toString());
                 card_bottom.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
