@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="cardview_height">150dp</dimen>
-    <dimen name="cardview_weight">150dp</dimen>
+    <dimen name="cardview_height">300dp</dimen>
+    <dimen name="cardview_width">300dp</dimen>
     <dimen name="main_layout_top_padding">20dp</dimen>
+    <dimen name="spinner_width">250dp</dimen>
+    <dimen name="spinner_height">40dp</dimen>
+    <dimen name="spinner_margin">20dp</dimen>
 
 </resources>

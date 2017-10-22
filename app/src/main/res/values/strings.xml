@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">CryptocurrencyExchangeRate</string>
+    <string name="top_card_main_title">CHECK EXCHANGE RATE OF</string>
+    <string name="to">TO</string>
+    <string name="Load_card_button_title">Load Exchange Rate</string>
+
     <!--this hold list of cryptocurrency-->
     <string-array name="cryptocurrency_array">
         <item>BTC</item>
@@ -28,7 +32,4 @@
         <item>BRL</item>
         <item>SAR</item>
     </string-array>
-
-
-
 </resources>
