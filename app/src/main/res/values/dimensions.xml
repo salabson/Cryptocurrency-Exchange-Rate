@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="cardview_height">300dp</dimen>
-    <dimen name="cardview_weight">300dp</dimen>
+    <dimen name="cardview_height">400dp</dimen>
+    <dimen name="cardview_weight">400dp</dimen>
+    <dimen name="main_layout_top_padding">20dp</dimen>
 
 </resources>
