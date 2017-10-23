@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,12 +41,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // inflate the layout row
                 LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                final View cardView = layoutInflater.inflate(R.layout.layout_row,null);
+                final View rowView = layoutInflater.inflate(R.layout.layout_row,null);
 
                 // get reference to Card view in the layout row
-                final CardView card_bottom = (CardView)cardView.findViewById(R.id.card_bottom);
+                final CardView card_bottom = (CardView)rowView.findViewById(R.id.card_bottom);
 
-                TextView tv_crypto = (TextView)cardView.findViewById(R.id.tv_crypto);
+                // get reference to remove icon on layout row and set click event to remove card from the screen
+                ImageView remove_card = (ImageView) rowView.findViewById(R.id.img_remove_card);
+                remove_card.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ((LinearLayout)rowView.getParent()).removeView(rowView);
+                    }
+                });
+
+
+                TextView tv_crypto = (TextView)rowView.findViewById(R.id.tv_crypto);
                 tv_crypto.setText(spinner_cryptocurrency.getSelectedItem().toString());
 
                 // set click listener for each card view created by user and wire its click event to display conversion activity
@@ -58,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                container.addView(cardView);
+                container.addView(rowView);
             }
         });
 
