@@ -3,8 +3,10 @@ package com.example.cryptocurrencyexchangerate.utilities;
 import android.net.Uri;
 import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -58,7 +60,7 @@ private static String executeHttpRequest(URL url) throws IOException {
         urlConnection.setRequestMethod("GET");
         urlConnection.connect();
 
-        // read input steam if the connection is successful
+        // read input steam return from the server if the connection is successful
         if (urlConnection.getResponseCode()== 200) {
             inputStream = urlConnection.getInputStream();
             response = readInputStream(inputStream);
@@ -83,8 +85,22 @@ private static String executeHttpRequest(URL url) throws IOException {
     // return string response
     return response;
 }
+// this convert input stream to json string
+    private static String readInputStream(InputStream inputStream) throws IOException {
+        String jsonReponse = null;
+        StringBuilder result = new StringBuilder();
+        if (inputStream != null) {
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                result.append(line);
+                line = bufferedReader.readLine();
+            }
 
-    private static String readInputStream(InputStream inputStream) {
+        }
+
+        return jsonReponse = result.toString();
 
     }
 
