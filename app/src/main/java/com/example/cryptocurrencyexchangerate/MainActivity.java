@@ -1,6 +1,7 @@
 package com.example.cryptocurrencyexchangerate;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -116,4 +117,25 @@ public class MainActivity extends AppCompatActivity {
         spinner_cryptocurrency.setAdapter(cryptoAdapter);
         spinner_fiatcurrency.setAdapter(fiatAdapter);
     }
+
+    private class ExchangeRateTask extends AsyncTask<String, Void, ExchangeRate> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+
+
+        @Override
+        protected ExchangeRate doInBackground(String... strings) {
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(ExchangeRate exchangeRate) {
+            super.onPostExecute(exchangeRate);
+        }
+    }
+
 }
