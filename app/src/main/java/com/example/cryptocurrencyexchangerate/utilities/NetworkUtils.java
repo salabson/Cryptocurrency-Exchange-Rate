@@ -17,13 +17,13 @@ public class NetworkUtils {
     // create urls details that will use to connect to web API
     final static String CRYPTOCOMPARE_BASE_URL = "https://min-api.cryptocompare.com/data/price";
     final  static String PARAM_FSYM ="fsym";
-    final  static String PARAM_TSYM ="tsyms";
+    final  static String PARAM_TSYMS ="tsyms";
 
-    // create complete urls by combining base url and query parameters
-    private static URL buildURL(String baseCurrency, String otherCurrency ) {
+    // create complete url object by combining base url and query parameters
+    private static URL buildURL(String cryptoCurrency, String fiatCurrency ) {
         Uri builtUri = Uri.parse(CRYPTOCOMPARE_BASE_URL).buildUpon()
-                .appendQueryParameter(PARAM_FSYM,baseCurrency)
-                .appendQueryParameter(PARAM_TSYM,otherCurrency)
+                .appendQueryParameter(PARAM_FSYM,cryptoCurrency)
+                .appendQueryParameter(PARAM_TSYMS,fiatCurrency)
                 .build();
 
         URL url = null;
@@ -36,5 +36,8 @@ public class NetworkUtils {
 
         return url;
     }
+
+
+
 
 }
