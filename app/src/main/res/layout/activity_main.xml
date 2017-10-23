@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="#DCDCDC"
     android:paddingTop="@dimen/main_layout_top_padding"
     tools:context="com.example.cryptocurrencyexchangerate.MainActivity">
 
