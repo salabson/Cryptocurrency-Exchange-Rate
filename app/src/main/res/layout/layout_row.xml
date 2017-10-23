@@ -26,6 +26,13 @@
                 android:layout_marginTop="8dp"
                 android:src="@drawable/ic_remove_card"/>
 
+            <ImageView
+                android:id="@+id/img_cryptoImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                />
+
 
             <TextView
                 android:id="@+id/tv_crypto"

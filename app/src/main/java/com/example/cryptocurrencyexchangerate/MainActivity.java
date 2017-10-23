@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         Button btn_load_card = (Button)findViewById(R.id.btn_load_card);
         final LinearLayout container = (LinearLayout)findViewById(R.id.bottom_container);
 
-        // poulate spinners
+        // populate spinners data
         fillSpinners();
 
 
@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
                 // get reference to Card view in the layout row
                 final CardView card_bottom = (CardView)rowView.findViewById(R.id.card_bottom);
+
+
 
                 // get reference to remove icon on layout row and set click event to remove card from the screen
                 ImageView remove_card = (ImageView) rowView.findViewById(R.id.img_remove_card);
