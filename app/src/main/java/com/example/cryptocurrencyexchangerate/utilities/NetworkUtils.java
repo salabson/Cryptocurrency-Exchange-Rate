@@ -31,7 +31,7 @@ public class NetworkUtils {
         try {
             url = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
-            Log.e(LOG_TAG,"Problem making the HTTP request.", e);
+            Log.e(LOG_TAG, "Problem building the URL ", e);
         }
 
         return url;
