@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView cryptoImage;
     TextView tv_dispalay_rate;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         // get reference to button and linearlayout
         Button btn_load_card = (Button)findViewById(R.id.btn_load_card);
         final LinearLayout container = (LinearLayout)findViewById(R.id.bottom_container);
+
 
         // populate spinners data
         fillSpinners();
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // get reference to Card view in the layout row
                 final CardView card_bottom = (CardView)rowView.findViewById(R.id.card_bottom);
+                tv_dispalay_rate = (TextView)rowView.findViewById(R.id.tv_display_rate);
 
 
                 // run background network task
@@ -149,7 +153,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(ExchangeRate exchangeRate) {
             super.onPostExecute(exchangeRate);
-            tv_dispalay_rate.setText(String.valueOf(exchangeRate.getFiatCurrency()));
+            if (exchangeRate == null) {
+                tv_dispalay_rate.setText("Data Not Found");
+            } else {
+                tv_dispalay_rate.setText(String.valueOf(exchangeRate.getFiatCurrency()));
+            }
         }
     }
 
