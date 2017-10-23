@@ -11,6 +11,9 @@ import java.net.URL;
  */
 
 public class NetworkUtils {
+    // get this class name
+    private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
+
     // create urls details that will use to connect to web API
     final static String CRYPTOCOMPARE_BASE_URL = "https://min-api.cryptocompare.com/data/price";
     final  static String PARAM_FSYM ="fsym";
@@ -28,6 +31,7 @@ public class NetworkUtils {
         try {
             url = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
+            Log.e(LOG_TAG,"Problem making the HTTP request.", e);
         }
 
         return url;
