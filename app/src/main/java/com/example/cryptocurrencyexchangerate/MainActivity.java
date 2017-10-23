@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.cryptocurrencyexchangerate.utilities.NetworkUtils;
+
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner_fiatcurrency;
 
     ImageView cryptoImage;
+    TextView tv_dispalay_rate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         fillSpinners();
 
 
+
+
         btn_load_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
                 // get reference to Card view in the layout row
                 final CardView card_bottom = (CardView)rowView.findViewById(R.id.card_bottom);
+
+
+                // run background network task
+                ExchangeRateAsyncTask task = new ExchangeRateAsyncTask();
+                task.execute(spinner_cryptocurrency.getSelectedItem().toString(),spinner_fiatcurrency.getSelectedItem().toString());
 
 
 
@@ -61,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
-                TextView tv_crypto = (TextView)rowView.findViewById(R.id.tv_crypto);
-                tv_crypto.setText(spinner_cryptocurrency.getSelectedItem().toString());
+
 
                 // display selected cryptocurrency image on the card
                  cryptoImage = (ImageView)rowView.findViewById(R.id.img_cryptoImage);
@@ -118,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         spinner_fiatcurrency.setAdapter(fiatAdapter);
     }
 
-    private class ExchangeRateTask extends AsyncTask<String, Void, ExchangeRate> {
+    private class ExchangeRateAsyncTask extends AsyncTask<String, Void, ExchangeRate> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -128,13 +137,19 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected ExchangeRate doInBackground(String... strings) {
-            return null;
+            // network data in the background
+            ExchangeRate exchangeRate = null;
+            if (strings != null) {
+                exchangeRate = NetworkUtils.fetchCurrentExchangeRate(strings[0],strings[1]);
+            }
+            return exchangeRate;
         }
 
 
         @Override
         protected void onPostExecute(ExchangeRate exchangeRate) {
             super.onPostExecute(exchangeRate);
+            tv_dispalay_rate.setText(String.valueOf(exchangeRate.getFiatCurrency()));
         }
     }
 
