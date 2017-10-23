@@ -16,6 +16,10 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
+    // store cryptocurrency indices in spinner
+    private static final int BTC_INDEX = 0;
+    private static final int ETH_INDEX = 1;
+
     Spinner spinner_cryptocurrency;
     Spinner spinner_fiatcurrency;
 
@@ -34,11 +38,16 @@ public class MainActivity extends AppCompatActivity {
         btn_load_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // inflate the layout row
                 LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                 final View cardView = layoutInflater.inflate(R.layout.layout_row,null);
+
+                // get reference to Card view in the layout row
                 final CardView card_bottom = (CardView)cardView.findViewById(R.id.card_bottom);
+
                 TextView tv_crypto = (TextView)cardView.findViewById(R.id.tv_crypto);
                 tv_crypto.setText(spinner_cryptocurrency.getSelectedItem().toString());
+                
                 card_bottom.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
