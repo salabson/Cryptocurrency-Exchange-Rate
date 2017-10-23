@@ -1,7 +1,13 @@
 package com.example.cryptocurrencyexchangerate.utilities;
 
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
+
+import com.example.cryptocurrencyexchangerate.ExchangeRate;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -104,5 +110,29 @@ private static String executeHttpRequest(URL url) throws IOException {
 
     }
 
+ // this method extract json data from the string
+    private  static ExchangeRate extractJson(String jsonCurrencyRate, String fiatCurrencyCode) throws JSONException {
+        ExchangeRate exchangeRate = null;
 
+        if (TextUtils.isEmpty(jsonCurrencyRate)) {
+            return null;
+        }
+
+        try {
+            // create json object
+            JSONObject jsonObject = new JSONObject(jsonCurrencyRate);
+
+            // extract  current  fiat currency return by from internet
+            double fiatCurrency = jsonObject.getDouble(fiatCurrencyCode);
+
+            // initialize fiat currency field in the exchange rate model constructor
+            exchangeRate = new ExchangeRate(fiatCurrency);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // finally return exchange rate oject
+        return exchangeRate;
+
+    }
 }
