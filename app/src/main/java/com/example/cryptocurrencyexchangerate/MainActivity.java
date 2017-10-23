@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
                 TextView tv_crypto = (TextView)cardView.findViewById(R.id.tv_crypto);
                 tv_crypto.setText(spinner_cryptocurrency.getSelectedItem().toString());
-                
+
+                // set click listener for each card view created by user and wire its click event to display conversion activity
                 card_bottom.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
