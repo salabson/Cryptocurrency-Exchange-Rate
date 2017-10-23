@@ -135,4 +135,27 @@ private static String executeHttpRequest(URL url) throws IOException {
         return exchangeRate;
 
     }
+
+    // create method that above methods to fetch exchange rate
+    public static ExchangeRate fetchCurrentExchangeRate(String cryptoCurrency, String fiatCurrency) {
+        // build Url to be used for http request
+        URL url = buildURL(cryptoCurrency, fiatCurrency);
+        // make http request to the server
+        String serverReponse = null;
+        ExchangeRate exchangeRate = null;
+        try {
+
+            serverReponse = executeHttpRequest(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // extract data from json response and initialize the exchange rate model
+        try {
+            exchangeRate   = extractJson(serverReponse, fiatCurrency);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // finally return exchange rate object to the calling class
+        return  exchangeRate;
+    }
 }
