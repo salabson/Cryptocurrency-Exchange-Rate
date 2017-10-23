@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner_cryptocurrency;
     Spinner spinner_fiatcurrency;
 
+    ImageView cryptoImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         btn_load_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // inflate the layout row
+                // inflate the layout row that inserted as a card
                 LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                 final View rowView = layoutInflater.inflate(R.layout.layout_row,null);
 
@@ -61,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
                 TextView tv_crypto = (TextView)rowView.findViewById(R.id.tv_crypto);
                 tv_crypto.setText(spinner_cryptocurrency.getSelectedItem().toString());
 
+                // display selected cryptocurrency image on the card
+                 cryptoImage = (ImageView)rowView.findViewById(R.id.img_cryptoImage);
+                int cryptoIndex = spinner_cryptocurrency.getSelectedItemPosition();
+                displaySelectedCryptocurrencyImage(cryptoIndex);
+
                 // set click listener for each card view created by user and wire its click event to display conversion activity
                 card_bottom.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -75,6 +82,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    // this display appropriate cryptocurrency image
+    private void displaySelectedCryptocurrencyImage(int cryptoCurrencyIndex) {
+        switch (cryptoCurrencyIndex) {
+            case BTC_INDEX:
+                cryptoImage.setImageResource(R.drawable.ic_btc);
+                break;
+            case ETH_INDEX:
+                cryptoImage.setImageResource(R.drawable.ic_eth);
+                break;
+            default:
+                cryptoImage.setImageResource(R.drawable.ic_btc);
+        }
     }
 
     private void fillSpinners() {
