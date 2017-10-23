@@ -3,6 +3,9 @@ package com.example.cryptocurrencyexchangerate.utilities;
 import android.net.Uri;
 import android.util.Log;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -37,7 +40,53 @@ public class NetworkUtils {
         return url;
     }
 
+// take url and make http request
+private static String executeHttpRequest(URL url) throws IOException {
+    String response = null;
+    // retun null if url is null
+    if (url == null) {
+        return response;
+    }
 
+    // define input stream and connection variable
+    InputStream inputStream = null;
+    HttpURLConnection urlConnection = null;
+
+    try {
+        // connect to internet
+        urlConnection = (HttpURLConnection) url.openConnection();
+        urlConnection.setRequestMethod("GET");
+        urlConnection.connect();
+
+        // read input steam if the connection is successful
+        if (urlConnection.getResponseCode()== 200) {
+            inputStream = urlConnection.getInputStream();
+            response = readInputStream(inputStream);
+            Log.e(LOG_TAG, " Response data." + response);
+        }else {
+            Log.e(LOG_TAG, "Error response code." + urlConnection.getResponseCode());
+        }
+
+    } catch (IOException e) {
+        Log.e(LOG_TAG,"Error in retrieving cryptocurrency price data", e);
+
+    }finally {
+        // terminate the connection to save resource
+        if (urlConnection != null) {
+            urlConnection.disconnect();
+        }
+        // close the input stream
+        if (inputStream != null) {
+            inputStream.close();
+        }
+    }
+    // return string response
+    return response;
+}
+
+    private static String readInputStream(InputStream inputStream) {
+
+    }
 
 
 }
