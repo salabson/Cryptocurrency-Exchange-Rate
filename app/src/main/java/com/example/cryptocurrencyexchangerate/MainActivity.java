@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     // store cryptocurrency indices in spinner
     private static final int BTC_INDEX = 0;
     private static final int ETH_INDEX = 1;
-
+    Button btn_load_card;
     Spinner spinner_cryptocurrency;
     Spinner spinner_fiatcurrency;
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // get reference to button and linearlayout
-        Button btn_load_card = (Button)findViewById(R.id.btn_load_card);
+         btn_load_card = (Button)findViewById(R.id.btn_load_card);
         final LinearLayout container = (LinearLayout)findViewById(R.id.bottom_container);
 
         // populate spinners data
@@ -98,13 +98,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+                // add layout row to the main layout
                 container.addView(rowView);
 
                 // scroll to bottom of layout row to bring the newly created card to focus
                 bottom_scroll.post(new Runnable() {
                     @Override
                     public void run() {
-                        bottom_scroll.fullScroll(View.FOCUS_DOWN);
+                        bottom_scroll.smoothScrollBy(0, bottom_scroll.getBottom());
                     }
                 });
             }
@@ -148,10 +149,14 @@ public class MainActivity extends AppCompatActivity {
         spinner_fiatcurrency.setAdapter(fiatAdapter);
     }
 
+    // this class is reponsible for managing heavy background task
     private class ExchangeRateAsyncTask extends AsyncTask<String, Void, ExchangeRate> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            // disable load card button as network background request begins
+            btn_load_card.setEnabled(false);
+            // display progress bar as network background request begins
             pb_loading.setVisibility(View.VISIBLE);
         }
 
@@ -176,7 +181,11 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 tv_dispalay_rate.setText(String.valueOf(exchangeRate.getFiatCurrency()));
             }
+
+            // Hide progress bar as network background request completed
             pb_loading.setVisibility(View.INVISIBLE);
+            // Enable load card button as network background request completed
+            btn_load_card.setEnabled(true);
         }
     }
 
