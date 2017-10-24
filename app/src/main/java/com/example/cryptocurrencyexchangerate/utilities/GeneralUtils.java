@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
  */
 
 public class GeneralUtils {
+
     // this method check for internet connectivity and return true or false depending on the state
     public static boolean isInternetConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

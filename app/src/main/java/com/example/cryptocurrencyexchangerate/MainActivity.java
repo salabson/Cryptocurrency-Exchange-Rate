@@ -16,7 +16,9 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.cryptocurrencyexchangerate.utilities.GeneralUtils;
 import com.example.cryptocurrencyexchangerate.utilities.NetworkUtils;
 
 import org.w3c.dom.Text;
@@ -39,76 +41,87 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         // get reference to button and linearlayout
          btn_load_card = (Button)findViewById(R.id.btn_load_card);
         final LinearLayout container = (LinearLayout)findViewById(R.id.bottom_container);
 
-        // populate spinners data
+        // populate spinners with data
         fillSpinners();
 
-
-
-
+        /*when user click this button it creates cryptocurrency exchange rate Card if internet is available
+         otherwise it displays error message to the user that internet is not connected*/
         btn_load_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // inflate the layout row that inserted as a card
-                LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                final View rowView = layoutInflater.inflate(R.layout.layout_row,null);
+                // check for internet availability
+                boolean isInternetAvailable = GeneralUtils.isInternetConnected(MainActivity.this);
+                if (isInternetAvailable) {
+                    // inflate the layout row that inserted as a card
+                    LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                    final View rowView = layoutInflater.inflate(R.layout.layout_row,null);
 
-                // get reference to Card view in the layout row
-                final CardView card_bottom = (CardView)rowView.findViewById(R.id.card_bottom);
-                tv_dispalay_rate = (TextView)rowView.findViewById(R.id.tv_display_rate);
+                    // get reference to Card view in the layout row
+                    final CardView card_bottom = (CardView)rowView.findViewById(R.id.card_bottom);
 
-                // get reference to progress bar
-                pb_loading = (ProgressBar)rowView.findViewById(R.id.pb_loading);
+                    // get reference to text view in the layout row
+                    tv_dispalay_rate = (TextView)rowView.findViewById(R.id.tv_display_rate);
 
-                bottom_scroll = (ScrollView)findViewById(R.id.bottom_scroll);
+                    // get reference to progress bar layout row
+                    pb_loading = (ProgressBar)rowView.findViewById(R.id.pb_loading);
 
-                // run background network task
-                ExchangeRateAsyncTask task = new ExchangeRateAsyncTask();
-                task.execute(spinner_cryptocurrency.getSelectedItem().toString(),spinner_fiatcurrency.getSelectedItem().toString());
-
-
-
-                // get reference to remove icon on layout row and set click event to remove card from the screen
-                ImageView remove_card = (ImageView) rowView.findViewById(R.id.img_remove_card);
-                remove_card.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ((LinearLayout)rowView.getParent()).removeView(rowView);
-                    }
-                });
+                    // reference to scroll view that contain the cards
+                    bottom_scroll = (ScrollView)findViewById(R.id.bottom_scroll);
 
 
 
+                    // get reference to remove icon on layout row and set click event to remove card from the screen
+                    ImageView remove_card = (ImageView) rowView.findViewById(R.id.img_remove_card);
+                    remove_card.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ((LinearLayout)rowView.getParent()).removeView(rowView);
+                        }
+                    });
 
-                // display selected cryptocurrency image on the card
-                 cryptoImage = (ImageView)rowView.findViewById(R.id.img_cryptoImage);
-                int cryptoIndex = spinner_cryptocurrency.getSelectedItemPosition();
-                displaySelectedCryptocurrencyImage(cryptoIndex);
 
-                // set click listener for each card view created by user and wire its click event to display conversion activity
-                card_bottom.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(MainActivity.this,ConversionActivity.class);
-                        intent.putExtra("top",spinner_cryptocurrency.getSelectedItem().toString());
-                        startActivity(intent);
-                    }
-                });
 
-                // add layout row to the main layout
-                container.addView(rowView);
 
-                // scroll to bottom of layout row to bring the newly created card to focus
-                bottom_scroll.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        bottom_scroll.smoothScrollBy(0, bottom_scroll.getBottom());
-                    }
-                });
-            }
+                    // display selected cryptocurrency image on the card
+                    cryptoImage = (ImageView)rowView.findViewById(R.id.img_cryptoImage);
+                    int cryptoIndex = spinner_cryptocurrency.getSelectedItemPosition();
+                    displaySelectedCryptocurrencyImage(cryptoIndex);
+
+                    // set click listener for each card view created by user and wire its click event to display conversion activity
+                    card_bottom.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(MainActivity.this,ConversionActivity.class);
+                            intent.putExtra("top",spinner_cryptocurrency.getSelectedItem().toString());
+                            startActivity(intent);
+                        }
+                    });
+
+                    // add layout row to the main layout
+                    container.addView(rowView);
+
+                    // scroll to bottom of layout row to bring the newly created card to focus
+                    bottom_scroll.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottom_scroll.smoothScrollBy(0, bottom_scroll.getBottom());
+                        }
+                    });
+
+                    // after preparing Card UI run background network task to display current selected cryptocurrency exchange rate
+                    // on the Card
+                    ExchangeRateAsyncTask task = new ExchangeRateAsyncTask();
+                    task.execute(spinner_cryptocurrency.getSelectedItem().toString(),spinner_fiatcurrency.getSelectedItem().toString());
+
+                } else {
+                    Toast.makeText(MainActivity.this, "Ooops! You are not connected to internet",Toast.LENGTH_LONG).show();
+                }
+                 }
 
         });
 
