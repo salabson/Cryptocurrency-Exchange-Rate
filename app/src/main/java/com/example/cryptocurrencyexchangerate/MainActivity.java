@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
                 // get reference to progress bar
                 pb_loading = (ProgressBar)rowView.findViewById(R.id.pb_loading);
+
+                bottom_scroll = (ScrollView)findViewById(R.id.bottom_scroll);
+
                 // run background network task
                 ExchangeRateAsyncTask task = new ExchangeRateAsyncTask();
                 task.execute(spinner_cryptocurrency.getSelectedItem().toString(),spinner_fiatcurrency.getSelectedItem().toString());
@@ -97,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
                 container.addView(rowView);
 
-                // scroll to bottom of layout row to bring the newly created to focus
-                bottom_scroll = (ScrollView)rowView.findViewById(R.id.bottom_scroll);
+                // scroll to bottom of layout row to bring the newly created card to focus
                 bottom_scroll.post(new Runnable() {
                     @Override
                     public void run() {
