@@ -1,13 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     tools:context="com.example.cryptocurrencyexchangerate.ConversionActivity">
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_main_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:layout_width="300dp"
+        android:inputType="numberDecimal"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_sub_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:id="@+id/et_coin_amount" />
+
+    <TextView
+        android:id="@+id/tv_sub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_main_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_total_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/et_coin_amount"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="94dp"
+        android:text="Total value" />
+
+    <TextView
+        android:id="@+id/tv_total_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.00"
+        android:layout_above="@+id/crypro_rate_title"
+        android:layout_alignRight="@+id/et_coin_amount"
+        android:layout_alignEnd="@+id/et_coin_amount" />
+
+    <TextView
+        android:id="@+id/crypro_rate_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_total_title"
+        android:layout_alignStart="@+id/tv_total_title"
+        android:layout_below="@+id/tv_total_title"
+        android:layout_marginTop="53dp"
+        android:text="Rate per BTC" />
+
+    <TextView
+        android:id="@+id/tv_btc_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/crypro_rate_title"
+        android:layout_alignLeft="@+id/tv_total_amount"
+        android:layout_alignStart="@+id/tv_total_amount"
+        android:text="0.00" />
+
+
+</RelativeLayout>
