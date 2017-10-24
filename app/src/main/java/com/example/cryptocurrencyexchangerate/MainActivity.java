@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView cryptoImage;
     TextView tv_dispalay_rate;
 
+    ScrollView bottom_scroll;
+    ProgressBar pb_loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         // get reference to button and linearlayout
         Button btn_load_card = (Button)findViewById(R.id.btn_load_card);
         final LinearLayout container = (LinearLayout)findViewById(R.id.bottom_container);
-
 
         // populate spinners data
         fillSpinners();
@@ -58,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 final CardView card_bottom = (CardView)rowView.findViewById(R.id.card_bottom);
                 tv_dispalay_rate = (TextView)rowView.findViewById(R.id.tv_display_rate);
 
-
+                // get reference to progress bar
+                pb_loading = (ProgressBar)rowView.findViewById(R.id.pb_loading);
                 // run background network task
                 ExchangeRateAsyncTask task = new ExchangeRateAsyncTask();
                 task.execute(spinner_cryptocurrency.getSelectedItem().toString(),spinner_fiatcurrency.getSelectedItem().toString());
@@ -93,8 +96,20 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 container.addView(rowView);
+
+                // scroll to bottom of layout row to bring the newly created to focus
+                bottom_scroll = (ScrollView)rowView.findViewById(R.id.bottom_scroll);
+                bottom_scroll.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        bottom_scroll.fullScroll(View.FOCUS_DOWN);
+                    }
+                });
             }
+
         });
+
+
 
     }
 
@@ -135,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            pb_loading.setVisibility(View.VISIBLE);
         }
 
 
@@ -158,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 tv_dispalay_rate.setText(String.valueOf(exchangeRate.getFiatCurrency()));
             }
+            pb_loading.setVisibility(View.INVISIBLE);
         }
     }
 
