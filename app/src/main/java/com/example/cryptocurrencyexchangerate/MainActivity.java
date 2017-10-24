@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView cryptoImage;
     TextView tv_dispalay_rate;
+    TextView tv_crypto_code;
+    TextView tv_fiat_code;
 
     ScrollView bottom_scroll;
     ProgressBar pb_loading;
@@ -73,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
                     // reference to scroll view that contain the cards
                     bottom_scroll = (ScrollView)findViewById(R.id.bottom_scroll);
 
+                    // reference to two text views that hold currencies code to be passed to conversion activity through intent
+                    tv_crypto_code = (TextView)rowView.findViewById(R.id.crypto_code);
+                    tv_fiat_code = (TextView)rowView.findViewById(R.id.fiat_code) ;
+
 
 
                     // get reference to remove icon on layout row and set click event to remove card from the screen
@@ -96,8 +102,10 @@ public class MainActivity extends AppCompatActivity {
                     card_bottom.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            // start the conversion activity along extra data of crypto and fiat currency of particular exchange rate card
                             Intent intent = new Intent(MainActivity.this,ConversionActivity.class);
-                            intent.putExtra("top",spinner_cryptocurrency.getSelectedItem().toString());
+                            intent.putExtra("crypto_code",tv_crypto_code.getText().toString());
+                            intent.putExtra("fiat_code",tv_fiat_code.getText().toString());
                             startActivity(intent);
                         }
                     });
@@ -196,8 +204,15 @@ public class MainActivity extends AppCompatActivity {
                 String formattedCurrency = GeneralUtils.GetNumberFormatForCurrencyCode(exchangeRate.getFiatCurrency(),
                         spinner_fiatcurrency.getSelectedItem().toString());
                 // display it on the card
+                tv_dispalay_rate.setTextSize(25);
                 tv_dispalay_rate.setText(formattedCurrency);
+
             }
+
+            // set the text view text property to the selected item of spinner that contain fiat currency
+            tv_fiat_code.setText(spinner_fiatcurrency.getSelectedItem().toString());
+            // set the text view text property to the selected item of spinner that contain crypto currency
+            tv_crypto_code.setText(spinner_cryptocurrency.getSelectedItem().toString());
 
             // Hide progress bar as network background request completed
             pb_loading.setVisibility(View.INVISIBLE);

@@ -10,6 +10,17 @@
         android:paddingBottom="@dimen/main_layout_top_padding"
         tools:context="com.example.cryptocurrencyexchangerate.MainActivity">
 
+        <TextView
+            android:id="@+id/crypto_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+         <TextView
+        android:id="@+id/fiat_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
         <android.support.v7.widget.CardView
             android:id="@+id/card_bottom"
             android:layout_width="@dimen/bottom_cardview_width"
