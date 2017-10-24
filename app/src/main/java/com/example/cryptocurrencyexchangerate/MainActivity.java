@@ -192,7 +192,11 @@ public class MainActivity extends AppCompatActivity {
             if (exchangeRate == null) {
                 tv_dispalay_rate.setText("Data Not Found");
             } else {
-                tv_dispalay_rate.setText(String.valueOf(exchangeRate.getFiatCurrency()));
+                // format current price to specified currency
+                String formattedCurrency = GeneralUtils.GetNumberFormatForCurrencyCode(exchangeRate.getFiatCurrency(),
+                        spinner_fiatcurrency.getSelectedItem().toString());
+                // display it on the card
+                tv_dispalay_rate.setText(formattedCurrency);
             }
 
             // Hide progress bar as network background request completed
