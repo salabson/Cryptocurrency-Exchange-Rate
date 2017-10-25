@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.Layout;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -102,11 +103,17 @@ public class MainActivity extends AppCompatActivity {
                     card_bottom.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            // start the conversion activity along extra data of crypto and fiat currency of particular exchange rate card
-                            Intent intent = new Intent(MainActivity.this,ConversionActivity.class);
-                            intent.putExtra("crypto_code",tv_crypto_code.getText().toString());
-                            intent.putExtra("fiat_code",tv_fiat_code.getText().toString());
-                            startActivity(intent);
+                            // if network backround is still running or it returns null display error message
+                            if (TextUtils.isEmpty(tv_dispalay_rate.getText().toString())) {
+                                Toast.makeText(MainActivity.this,"Please wait for data to finish loading",Toast.LENGTH_LONG).show();
+                            } else {
+                                // start the conversion activity along extra data of crypto and fiat currency of particular exchange rate card
+                                Intent intent = new Intent(MainActivity.this,ConversionActivity.class);
+                                intent.putExtra("crypto_code",tv_crypto_code.getText().toString());
+                                intent.putExtra("fiat_code",tv_fiat_code.getText().toString());
+                                startActivity(intent);
+                            }
+
                         }
                     });
 
