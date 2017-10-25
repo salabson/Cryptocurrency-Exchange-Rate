@@ -1,11 +1,16 @@
 package com.example.cryptocurrencyexchangerate;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.cryptocurrencyexchangerate.utilities.GeneralUtils;
+import com.example.cryptocurrencyexchangerate.utilities.NetworkUtils;
 
 import org.w3c.dom.Text;
 
@@ -68,5 +73,44 @@ public class ConversionActivity extends AppCompatActivity {
         });
 
     }
+    private class ExchangeRateAsynTask extends AsyncTask<String, Void, ExchangeRate> {
 
+        @Override
+        protected ExchangeRate doInBackground(String... strings) {
+            ExchangeRate exchangeRate = null;
+            exchangeRate = NetworkUtils.fetchCurrentExchangeRate(strings[0], strings[1]);
+            return exchangeRate;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(ExchangeRate exchangeRate) {
+            super.onPostExecute(exchangeRate);
+            if (exchangeRate != null) {
+
+                tv_btc_rate.setText(GeneralUtils.GetNumberFormatForCurrencyCode(exchangeRate.getFiatCurrency(),fiatCode));
+                if (!TextUtils.isEmpty(et_coin_amount.getText().toString())) {
+                    double crytoAmount = Double.valueOf(et_coin_amount.getText().toString());
+                    double totalAmount = crytoAmount * exchangeRate.getFiatCurrency();
+                    tv_total_amount.setText(GeneralUtils.GetNumberFormatForCurrencyCode(totalAmount,fiatCode));
+                } else {
+                    double crytoAmount = Double.valueOf("0.00");
+                    tv_total_amount.setText(String.valueOf(crytoAmount));
+
+                }
+
+
+            }
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+    }
 }
