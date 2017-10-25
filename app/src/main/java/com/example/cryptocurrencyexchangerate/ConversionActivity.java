@@ -68,7 +68,10 @@ public class ConversionActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                ExchangeRateAsynTask task = new ExchangeRateAsynTask();
+                if (editable != null && !TextUtils.isEmpty(editable.toString())) {
+                    task.execute(cryptoCode, fiatCode);
+                }
             }
         });
 
