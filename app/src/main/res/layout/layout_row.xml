@@ -25,6 +25,7 @@
             android:id="@+id/card_bottom"
             android:layout_width="@dimen/bottom_cardview_width"
             android:layout_height="@dimen/bottom_cardview_height"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_gravity="center_horizontal">
 
             <ImageView

@@ -9,7 +9,7 @@ import org.w3c.dom.Text;
 
 public class ConversionActivity extends AppCompatActivity {
     String fiatCode;
-    String cryptoSelectedItem;
+    String cryptoCode;
     TextView tv_btc_rate;
     EditText et_coin_amount;
     TextView tv_total_amount;
@@ -25,8 +25,8 @@ public class ConversionActivity extends AppCompatActivity {
         if (extras == null) {
           return;
         }
-        String fiatCode = extras.getString("fiat_code");
-        String cryptoCode = extras.getString("cryto_code");
+         fiatCode = extras.getString("fiat_code");
+         cryptoCode = extras.getString("crypto_code");
 
         // build the main title of the activity
         tv_main_title = (TextView)findViewById(R.id.tv_main_title);
@@ -34,12 +34,16 @@ public class ConversionActivity extends AppCompatActivity {
 
         // build the main title of the activity
         tv_sub_title = (TextView)findViewById(R.id.tv_sub_title);
-        tv_main_title.setText("Enter amount in " + cryptoCode);
+        tv_sub_title.setText("Enter amount in " + cryptoCode);
 
+        // edit text for entering amount of bitcoin
         et_coin_amount = (EditText) findViewById(R.id.et_coin_amount);
 
+        // text view that display total value cryptocurrency entered in fiat currency
         tv_total_amount = (TextView) findViewById(R.id.tv_total_amount);
         tv_total_amount.setText(fiatCode);
+
+        // this text view display rate of fiat currency per cryptocurrency
         tv_btc_rate = (TextView) findViewById(R.id.tv_btc_rate);
         tv_btc_rate.setText(cryptoCode);
 

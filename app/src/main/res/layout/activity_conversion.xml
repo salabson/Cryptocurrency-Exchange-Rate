@@ -16,6 +16,7 @@
         android:textSize="20sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
+
     <EditText
         android:layout_width="300dp"
         android:inputType="numberDecimal"
@@ -31,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_main_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="50dp"
         />
 
     <TextView
@@ -73,6 +74,5 @@
         android:layout_alignLeft="@+id/tv_total_amount"
         android:layout_alignStart="@+id/tv_total_amount"
         android:text="0.00" />
-
 
 </RelativeLayout>

@@ -22,7 +22,6 @@
             android:layout_height="@dimen/top_cardview_height"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:foreground="?android:attr/selectableItemBackground"
             android:layout_marginTop="20dp"
             android:id="@+id/cardView_top" >
             <LinearLayout
