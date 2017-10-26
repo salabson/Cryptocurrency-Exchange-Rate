@@ -96,13 +96,13 @@ public class ConversionActivity extends AppCompatActivity {
             if (exchangeRate != null) {
 
                 tv_btc_rate.setText(GeneralUtils.GetNumberFormatForCurrencyCode(exchangeRate.getFiatCurrency(),fiatCode));
+
                 if (!TextUtils.isEmpty(et_coin_amount.getText().toString())) {
                     double crytoAmount = Double.valueOf(et_coin_amount.getText().toString());
                     double totalAmount = crytoAmount * exchangeRate.getFiatCurrency();
                     tv_total_amount.setText(GeneralUtils.GetNumberFormatForCurrencyCode(totalAmount,fiatCode));
                 } else {
-                    double crytoAmount = Double.valueOf("0.00");
-                    tv_total_amount.setText(String.valueOf(crytoAmount));
+                    et_coin_amount.setText("0.00");
 
                 }
 

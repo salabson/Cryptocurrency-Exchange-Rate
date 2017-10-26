@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner_fiatcurrency;
 
     ImageView cryptoImage;
-    TextView tv_dispalay_rate;
     TextView tv_crypto_code;
     TextView tv_fiat_code;
+    TextView tv_dispalay_rate;
 
     ScrollView bottom_scroll;
     ProgressBar pb_loading;
@@ -88,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             ((LinearLayout)rowView.getParent()).removeView(rowView);
+                            // this enable button load exchange
+                            if (!btn_load_card.isEnabled()) {
+                                btn_load_card.setEnabled(true);
+                            }
                         }
                     });
 
@@ -103,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     card_bottom.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            // if network backround is still running or it returns null display error message
+                            // if network background is still running or it returns null display error message
                             if (TextUtils.isEmpty(tv_dispalay_rate.getText().toString())) {
                                 Toast.makeText(MainActivity.this,"Please wait for data to finish loading",Toast.LENGTH_LONG).show();
                             } else {
@@ -134,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     task.execute(spinner_cryptocurrency.getSelectedItem().toString(),spinner_fiatcurrency.getSelectedItem().toString());
 
                 } else {
+                    // display error message if user is not connected to internet
                     Toast.makeText(MainActivity.this, "Ooops! You are not connected to internet",Toast.LENGTH_LONG).show();
                 }
                  }
@@ -207,11 +212,10 @@ public class MainActivity extends AppCompatActivity {
             if (exchangeRate == null) {
                 tv_dispalay_rate.setText("Data Not Found");
             } else {
-                // format current price to specified currency
+                // format current price to specified currency and  display it on the card
                 String formattedCurrency = GeneralUtils.GetNumberFormatForCurrencyCode(exchangeRate.getFiatCurrency(),
                         spinner_fiatcurrency.getSelectedItem().toString());
-                // display it on the card
-                tv_dispalay_rate.setTextSize(25);
+                tv_dispalay_rate.setTextSize(30);
                 tv_dispalay_rate.setText(formattedCurrency);
 
             }

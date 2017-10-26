@@ -22,7 +22,8 @@
             android:layout_height="@dimen/top_cardview_height"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="5dp"
             android:id="@+id/cardView_top" >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,13 +58,16 @@
                     android:layout_height="@dimen/spinner_height"
                     android:layout_margin="@dimen/spinner_margin"
                     android:layout_gravity="center_horizontal"
-                    style="@style/spinner_style"/>
+                    android:background="@drawable/spinner_bg"/>
 
                 <Button
                     android:id="@+id/btn_load_card"
                     android:layout_width="@dimen/spinner_width"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center_horizontal"
+                    android:background="@drawable/button_bg"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
                     android:text="@string/Load_card_button_title" />
 
             </LinearLayout>
