@@ -66,9 +66,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center_horizontal"
                     android:background="@drawable/button_bg"
+                    android:text="@string/Load_card_button_title"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:text="@string/Load_card_button_title" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

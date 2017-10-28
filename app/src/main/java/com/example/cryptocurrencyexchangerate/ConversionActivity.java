@@ -37,7 +37,7 @@ public class ConversionActivity extends AppCompatActivity {
 
         // build the main title of the activity
         tv_main_title = (TextView)findViewById(R.id.tv_main_title);
-        tv_main_title.setText("Convert " + cryptoCode + "to " + fiatCode);
+        tv_main_title.setText("Convert " + cryptoCode + " to " + fiatCode);
 
         // build the main title of the activity
         tv_sub_title = (TextView)findViewById(R.id.tv_sub_title);
@@ -63,14 +63,21 @@ public class ConversionActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String content = charSequence.toString();
+
+
 
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+                // if user enter the amount of cryptocurrency then fetch the exchange rate for calculation
+                // otherwise display zero on total amount
                 ExchangeRateAsynTask task = new ExchangeRateAsynTask();
                 if (editable != null && !TextUtils.isEmpty(editable.toString())) {
                     task.execute(cryptoCode, fiatCode);
+                } else {
+                    tv_total_amount.setText("0.00");
                 }
             }
         });
@@ -101,9 +108,6 @@ public class ConversionActivity extends AppCompatActivity {
                     double crytoAmount = Double.valueOf(et_coin_amount.getText().toString());
                     double totalAmount = crytoAmount * exchangeRate.getFiatCurrency();
                     tv_total_amount.setText(GeneralUtils.GetNumberFormatForCurrencyCode(totalAmount,fiatCode));
-                } else {
-                    et_coin_amount.setText("0.00");
-
                 }
 
 
