@@ -50,7 +50,7 @@
         android:layout_below="@+id/et_coin_amount"
         android:layout_marginLeft="18dp"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:text="Total value"
         android:textSize="22sp"
         android:textColor="@color/colorPrimaryDark"/>
@@ -73,7 +73,8 @@
         android:layout_alignLeft="@+id/tv_total_title"
         android:layout_alignStart="@+id/tv_total_title"
         android:layout_below="@+id/tv_total_title"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="10dp"
         android:text="Rate per BTC"
         android:textSize="22sp"
         android:textColor="@color/colorPrimaryDark"/>
@@ -85,6 +86,7 @@
         android:layout_alignBottom="@+id/crypro_rate_title"
         android:layout_alignLeft="@+id/tv_total_amount"
         android:layout_alignStart="@+id/tv_total_amount"
+        android:layout_marginBottom="10dp"
         android:text="0.00"
         android:textSize="22sp"
         android:textColor="@color/colorPrimaryDark"/>

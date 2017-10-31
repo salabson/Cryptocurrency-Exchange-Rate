@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView cryptoImage;
     TextView tv_crypto_code;
     TextView tv_fiat_code;
-    TextView tv_dispalay_rate;
+   TextView tv_dispalay_rate = null;
 
     ScrollView bottom_scroll;
     ProgressBar pb_loading;
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     final CardView card_bottom = (CardView)rowView.findViewById(R.id.card_bottom);
 
                     // get reference to text view in the layout row
-                    tv_dispalay_rate = (TextView)rowView.findViewById(R.id.tv_display_rate);
+                    //tv_dispalay_rate = (TextView)rowView.findViewById(R.id.tv_display_rate);
 
                     // get reference to progress bar layout row
                     pb_loading = (ProgressBar)rowView.findViewById(R.id.pb_loading);
@@ -107,14 +107,20 @@ public class MainActivity extends AppCompatActivity {
                     card_bottom.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            // get reference to text view in the layout row
+                            tv_dispalay_rate = (TextView)rowView.findViewById(R.id.tv_display_rate);
+
                             // if network background is still running or it returns null display error message
                             if (TextUtils.isEmpty(tv_dispalay_rate.getText().toString())) {
-                                Toast.makeText(MainActivity.this,"Please wait for data to finish loading",Toast.LENGTH_LONG).show();
+                                Toast.makeText(MainActivity.this,"Please wait for the card to finish loading...",Toast.LENGTH_LONG).show();
+                            } else if (tv_dispalay_rate.getText().toString() == "Data Not Found") {
+                                Toast.makeText(MainActivity.this,"This card does not contain valid data",Toast.LENGTH_LONG).show();
+
                             } else {
                                 // start the conversion activity along extra data of crypto and fiat currency of particular exchange rate card
-                                Intent intent = new Intent(MainActivity.this,ConversionActivity.class);
-                                intent.putExtra("crypto_code",tv_crypto_code.getText().toString());
-                                intent.putExtra("fiat_code",tv_fiat_code.getText().toString());
+                                Intent intent = new Intent(MainActivity.this, ConversionActivity.class);
+                                intent.putExtra("crypto_code", tv_crypto_code.getText().toString());
+                                intent.putExtra("fiat_code", tv_fiat_code.getText().toString());
                                 startActivity(intent);
                             }
 
@@ -168,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
          spinner_cryptocurrency = (Spinner)findViewById(R.id.spinner_crypto);
          spinner_fiatcurrency = (Spinner)findViewById(R.id.spinner_fiat);
 
-        // Create an ArrayAdapters using the string array and a default spinner layout
+        // Create  ArrayAdapters using the string arrays and a default spinner layout
         ArrayAdapter<CharSequence> cryptoAdapter = ArrayAdapter.createFromResource(this,R.array.cryptocurrency_array,
                 android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> fiatAdapter = ArrayAdapter.createFromResource(this,R.array.fiat_currency_array,

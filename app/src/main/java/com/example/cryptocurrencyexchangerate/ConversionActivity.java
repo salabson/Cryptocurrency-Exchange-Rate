@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cryptocurrencyexchangerate.utilities.GeneralUtils;
 import com.example.cryptocurrencyexchangerate.utilities.NetworkUtils;
@@ -71,14 +72,25 @@ public class ConversionActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                // if user enter the amount of cryptocurrency then fetch the exchange rate for calculation
-                // otherwise display zero on total amount
-                ExchangeRateAsynTask task = new ExchangeRateAsynTask();
-                if (editable != null && !TextUtils.isEmpty(editable.toString())) {
-                    task.execute(cryptoCode, fiatCode);
+                // check for internet availability
+                boolean isInternetAvailable = GeneralUtils.isInternetConnected(ConversionActivity.this);
+                if (isInternetAvailable) {
+                    // if user enter the amount of cryptocurrency then fetch the exchange rate for calculation
+                    // otherwise display zero on total amount
+                    ExchangeRateAsynTask task = new ExchangeRateAsynTask();
+                    if (editable != null && !TextUtils.isEmpty(editable.toString())) {
+                        task.execute(cryptoCode, fiatCode);
+                    } else {
+                        tv_total_amount.setText("0.00");
+                        tv_btc_rate.setText("0.00");
+                    }
+
                 } else {
-                    tv_total_amount.setText("0.00");
+                    // display error message if user is not connected to internet
+                    Toast.makeText(ConversionActivity.this, "Ooops! You are not connected to internet",Toast.LENGTH_LONG).show();
+
                 }
+
             }
         });
 
