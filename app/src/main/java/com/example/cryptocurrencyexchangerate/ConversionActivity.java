@@ -33,16 +33,16 @@ public class ConversionActivity extends AppCompatActivity {
         if (extras == null) {
           return;
         }
-         fiatCode = extras.getString("fiat_code");
-         cryptoCode = extras.getString("crypto_code");
+         fiatCode = extras.getString(getString(R.string.key_fiat_code));
+         cryptoCode = extras.getString(getString(R.string.key_crypto_code));
 
         // build the main title of the activity
         tv_main_title = (TextView)findViewById(R.id.tv_main_title);
-        tv_main_title.setText("Convert " + cryptoCode + " to " + fiatCode);
+        tv_main_title.setText(getString(R.string.conversion_main_title) + cryptoCode + getString(R.string.conversion_to)+ fiatCode);
 
         // build the main title of the activity
         tv_sub_title = (TextView)findViewById(R.id.tv_sub_title);
-        tv_sub_title.setText("Enter amount in " + cryptoCode);
+        tv_sub_title.setText(getString(R.string.conversion_sub_title) + cryptoCode);
 
         // edit text for entering amount of bitcoin
         et_coin_amount = (EditText) findViewById(R.id.et_coin_amount);
@@ -81,13 +81,13 @@ public class ConversionActivity extends AppCompatActivity {
                     if (editable != null && !TextUtils.isEmpty(editable.toString())) {
                         task.execute(cryptoCode, fiatCode);
                     } else {
-                        tv_total_amount.setText("0.00");
-                        tv_btc_rate.setText("0.00");
+                        tv_total_amount.setText(getString(R.string.zero_default));
+                        tv_btc_rate.setText(getString(R.string.zero_default));
                     }
 
                 } else {
                     // display error message if user is not connected to internet
-                    Toast.makeText(ConversionActivity.this, "Ooops! You are not connected to internet",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ConversionActivity.this, getString(R.string.no_internet_message),Toast.LENGTH_LONG).show();
 
                 }
 

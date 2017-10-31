@@ -112,15 +112,15 @@ public class MainActivity extends AppCompatActivity {
 
                             // if network background is still running or it returns null display error message
                             if (TextUtils.isEmpty(tv_dispalay_rate.getText().toString())) {
-                                Toast.makeText(MainActivity.this,"Please wait for the card to finish loading...",Toast.LENGTH_LONG).show();
-                            } else if (tv_dispalay_rate.getText().toString() == "Data Not Found") {
-                                Toast.makeText(MainActivity.this,"This card does not contain valid data",Toast.LENGTH_LONG).show();
+                                Toast.makeText(MainActivity.this,getString(R.string.card_loading),Toast.LENGTH_LONG).show();
+                            } else if (tv_dispalay_rate.getText().toString() == getString(R.string.data_not_found)) {
+                                Toast.makeText(MainActivity.this,getString(R.string.card_invalid_data),Toast.LENGTH_LONG).show();
 
                             } else {
                                 // start the conversion activity along extra data of crypto and fiat currency of particular exchange rate card
                                 Intent intent = new Intent(MainActivity.this, ConversionActivity.class);
-                                intent.putExtra("crypto_code", tv_crypto_code.getText().toString());
-                                intent.putExtra("fiat_code", tv_fiat_code.getText().toString());
+                                intent.putExtra(getString(R.string.key_crypto_code), tv_crypto_code.getText().toString());
+                                intent.putExtra(getString(R.string.key_fiat_code), tv_fiat_code.getText().toString());
                                 startActivity(intent);
                             }
 
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     // display error message if user is not connected to internet
-                    Toast.makeText(MainActivity.this, "Ooops! You are not connected to internet",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,getString(R.string.no_internet_message),Toast.LENGTH_LONG).show();
                 }
                  }
 
@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(ExchangeRate exchangeRate) {
             super.onPostExecute(exchangeRate);
             if (exchangeRate == null) {
-                tv_dispalay_rate.setText("Data Not Found");
+                tv_dispalay_rate.setText(getString(R.string.data_not_found));
             } else {
                 // format current price to specified currency and  display it on the card
                 String formattedCurrency = GeneralUtils.GetNumberFormatForCurrencyCode(exchangeRate.getFiatCurrency(),
