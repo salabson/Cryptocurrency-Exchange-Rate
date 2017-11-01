@@ -27,22 +27,22 @@
             android:layout_height="@dimen/bottom_cardview_height"
             android:foreground="?android:attr/selectableItemBackground"
             android:layout_gravity="center_horizontal"
-            app:cardCornerRadius="5dp">
+            app:cardCornerRadius="@dimen/dim_5dp">
 
             <ImageView
                 android:id="@+id/img_remove_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginRight="@dimen/dim_8dp"
+                android:layout_marginTop="@dimen/dim_8dp"
                 android:src="@drawable/ic_remove_card"/>
 
             <ImageView
                 android:id="@+id/img_cryptoImage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp"
+                android:layout_width="@dimen/crpto_image_width_height"
+                android:layout_height="@dimen/crpto_image_width_height"
+                android:layout_marginTop="@dimen/crpto_image_margin_top"
                 android:layout_gravity="center_horizontal"
                 />
 

@@ -3,16 +3,20 @@
     <string name="top_card_main_title">CHECK EXCHANGE RATE OF</string>
     <string name="to">TO</string>
     <string name="Load_card_button_title">Load Exchange Rate</string>
-    <string name="card_loading">Please wait for the card to finish loading...</string>
+    <string name="card_loading">Please wait for the card to finish loading &#8230;</string>
     <string name="card_invalid_data">This card does not contain valid data</string>
     <string name="data_not_found">Data Not Found</string>
     <string name="no_internet_message">Ooops! You are not connected to internet</string>
-    <string name="conversion_sub_title">Enter amount in </string>
-    <string name="conversion_main_title">Convert </string>
+    <string name="conversion_sub_title">Enter amount in  </string>
+    <string name="conversion_main_title">Convert  </string>
     <string name="key_fiat_code">fiat_code</string>
     <string name="key_crypto_code">crypto_code</string>
     <string name="conversion_to"> to </string>
     <string name="zero_default">0.00</string>
+    <string name="crypro_rate_title">Rate per BTC</string>
+    <string name="crypro_rate_title_margin_top">53dp</string>
+    <string name="tv_total_title">Total value</string>
+
 
 
 

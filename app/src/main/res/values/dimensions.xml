@@ -2,11 +2,31 @@
 <resources>
     <dimen name="top_cardview_height">250dp</dimen>
     <dimen name="top_cardview_width">300dp</dimen>
+    <dimen name="land_top_cardview_width">250dp</dimen>
     <dimen name="main_layout_top_padding">10dp</dimen>
     <dimen name="spinner_width">250dp</dimen>
+    <dimen name="land_spinner_width">200dp</dimen>
+    <dimen name="land_card_button_width">200dp</dimen>
     <dimen name="spinner_height">40dp</dimen>
     <dimen name="spinner_margin">10dp</dimen>
     <dimen name="bottom_cardview_height">150dp</dimen>
     <dimen name="bottom_cardview_width">300dp</dimen>
+    <dimen name="top_card_main_title_margin_top">20dp</dimen>
+    <dimen name="dim_5dp">5dp</dimen>
+    <dimen name="dim_8dp">8dp</dimen>
+    <dimen name="crpto_image_width_height">50dp</dimen>
+    <dimen name="crpto_image_margin_top">50dp</dimen>
+    <dimen name="tv_total_title_top_margin">94dp</dimen>
+    <dimen name="tv_total_title_left_margin">94dp</dimen>
+    <dimen name="tv_sub_title_top_margin">50dp</dimen>
+    <dimen name="tv_sub_title_left_margin">18dp</dimen>
+    <dimen name="et_coin_amount_top_margin">14dp</dimen>
+    <dimen name="et_coin_amount_width">300dp</dimen>
+    <dimen name="et_coin_amount_right_margin">70dp</dimen>
+    <dimen name="tv_main_title_top_margin">30dp</dimen>
+    <dimen name="tv_btc_rate_bottom_margin">10dp</dimen>
+    <dimen name="crypro_rate_title_margin_top">45dp</dimen>
+    <dimen name="crypro_rate_title_bottom_top">45dp</dimen>
+
 
 </resources>

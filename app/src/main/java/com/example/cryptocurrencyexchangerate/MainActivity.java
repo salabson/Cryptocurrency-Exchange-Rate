@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView cryptoImage;
     TextView tv_crypto_code;
     TextView tv_fiat_code;
-   TextView tv_dispalay_rate = null;
+   TextView tv_dispalay_rate;
 
     ScrollView bottom_scroll;
     ProgressBar pb_loading;
@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
                     tv_fiat_code = (TextView)rowView.findViewById(R.id.fiat_code) ;
 
 
-
                     // get reference to remove icon on layout row and set click event to remove card from the screen
                     ImageView remove_card = (ImageView) rowView.findViewById(R.id.img_remove_card);
                     remove_card.setOnClickListener(new View.OnClickListener() {
@@ -95,9 +94,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
-
-
-
                     // display selected cryptocurrency image on the card
                     cryptoImage = (ImageView)rowView.findViewById(R.id.img_cryptoImage);
                     int cryptoIndex = spinner_cryptocurrency.getSelectedItemPosition();
@@ -107,8 +103,6 @@ public class MainActivity extends AppCompatActivity {
                     card_bottom.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            // get reference to text view in the layout row
-                            tv_dispalay_rate = (TextView)rowView.findViewById(R.id.tv_display_rate);
 
                             // if network background is still running or it returns null display error message
                             if (TextUtils.isEmpty(tv_dispalay_rate.getText().toString())) {
@@ -126,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     });
+                     // get reference to text view in the layout row
+                     tv_dispalay_rate = (TextView)rowView.findViewById(R.id.tv_display_rate);
 
                     // add layout row to the main layout
                     container.addView(rowView);

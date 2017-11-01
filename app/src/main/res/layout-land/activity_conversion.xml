@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/white"
     tools:context="com.example.cryptocurrencyexchangerate.ConversionActivity">
 
 
@@ -12,20 +12,22 @@
         android:id="@+id/tv_main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/tv_main_title_top_margin"
         android:textSize="25sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="@color/colorPrimaryDark"/>
 
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="@dimen/et_coin_amount_width"
         android:inputType="numberDecimal"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_main_title"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="70dp"
-        android:layout_marginTop="14dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="@dimen/et_coin_amount_right_margin"
+        android:layout_marginEnd="@dimen/et_coin_amount_right_margin"
+        android:layout_marginTop="@dimen/et_coin_amount_top_margin"
         android:id="@+id/et_coin_amount" />
 
     <TextView
@@ -36,9 +38,11 @@
         android:layout_alignLeft="@+id/et_coin_amount"
         android:layout_alignStart="@+id/et_coin_amount"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="18dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/tv_sub_title_left_margin"
+        android:layout_marginStart="@dimen/tv_sub_title_left_margin"
         android:textSize="22sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/tv_sub_title_top_margin"
         android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
@@ -48,10 +52,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/et_coin_amount"
-        android:layout_marginLeft="18dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="50dp"
-        android:text="Total value"
+        android:layout_marginLeft="@dimen/tv_total_title_left_margin"
+        android:layout_marginStart="@dimen/tv_total_title_left_margin"
+        android:layout_marginTop="@dimen/tv_total_title_top_margin"
+        android:text="@string/tv_total_title"
         android:textSize="22sp"
         android:textColor="@color/colorPrimaryDark"/>
 
@@ -59,7 +63,7 @@
         android:id="@+id/tv_total_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0.00"
+        android:text="@string/zero_default"
         android:textSize="22sp"
         android:textColor="@color/colorPrimaryDark"
         android:layout_above="@+id/crypro_rate_title"
@@ -73,9 +77,9 @@
         android:layout_alignLeft="@+id/tv_total_title"
         android:layout_alignStart="@+id/tv_total_title"
         android:layout_below="@+id/tv_total_title"
-        android:layout_marginTop="45dp"
-        android:layout_marginBottom="10dp"
-        android:text="Rate per BTC"
+        android:layout_marginTop="@dimen/crypro_rate_title_margin_top"
+        android:layout_marginBottom="@dimen/tv_btc_rate_bottom_margin"
+        android:text="@string/crypro_rate_title"
         android:textSize="22sp"
         android:textColor="@color/colorPrimaryDark"/>
 
@@ -86,8 +90,8 @@
         android:layout_alignBottom="@+id/crypro_rate_title"
         android:layout_alignLeft="@+id/tv_total_amount"
         android:layout_alignStart="@+id/tv_total_amount"
-        android:layout_marginBottom="10dp"
-        android:text="0.00"
+        android:layout_marginBottom="@dimen/tv_btc_rate_bottom_margin"
+        android:text="@string/zero_default"
         android:textSize="22sp"
         android:textColor="@color/colorPrimaryDark"/>
 
