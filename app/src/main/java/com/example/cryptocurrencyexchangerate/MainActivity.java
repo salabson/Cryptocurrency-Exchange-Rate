@@ -107,9 +107,6 @@ public class MainActivity extends AppCompatActivity {
                             // if network background is still running or it returns null display error message
                             if (TextUtils.isEmpty(tv_dispalay_rate.getText().toString())) {
                                 Toast.makeText(MainActivity.this,getString(R.string.card_loading),Toast.LENGTH_LONG).show();
-                            } else if (tv_dispalay_rate.getText().toString() == getString(R.string.data_not_found)) {
-                                Toast.makeText(MainActivity.this,getString(R.string.card_invalid_data),Toast.LENGTH_LONG).show();
-
                             } else {
                                 // start the conversion activity along extra data of crypto and fiat currency of particular exchange rate card
                                 Intent intent = new Intent(MainActivity.this, ConversionActivity.class);

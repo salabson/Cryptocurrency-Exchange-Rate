@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">CryptocurrencyExchangeRate</string>
+    <string name="main_activity_title">Crypto Exchange Rate</string>
+    <string name="conversion_activity_title">Crypto Conversion</string>
     <string name="top_card_main_title">CHECK EXCHANGE RATE OF</string>
     <string name="to">TO</string>
     <string name="Load_card_button_title">Load Exchange Rate</string>
@@ -13,7 +15,7 @@
     <string name="key_crypto_code">crypto_code</string>
     <string name="conversion_to"> to </string>
     <string name="zero_default">0.00</string>
-    <string name="crypro_rate_title">Rate per BTC</string>
+    <string name="crypro_rate_title">Rate per </string>
     <string name="crypro_rate_title_margin_top">53dp</string>
     <string name="tv_total_title">Total value</string>
 

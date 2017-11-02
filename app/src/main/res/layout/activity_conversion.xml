@@ -55,12 +55,12 @@
         android:layout_height="wrap_content"
         android:text="@string/zero_default"
         android:textColor="@color/colorPrimaryDark"
-        android:layout_above="@+id/crypro_rate_title"
+        android:layout_above="@+id/crypto_rate_title"
         android:layout_alignRight="@+id/et_coin_amount"
         android:layout_alignEnd="@+id/et_coin_amount" />
 
     <TextView
-        android:id="@+id/crypro_rate_title"
+        android:id="@+id/crypto_rate_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tv_total_title"
@@ -71,10 +71,10 @@
         android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
-        android:id="@+id/tv_btc_rate"
+        android:id="@+id/tv_crypto_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/crypro_rate_title"
+        android:layout_alignBottom="@+id/crypto_rate_title"
         android:layout_alignLeft="@+id/tv_total_amount"
         android:layout_alignStart="@+id/tv_total_amount"
         android:text="@string/zero_default"

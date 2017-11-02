@@ -18,7 +18,8 @@ import org.w3c.dom.Text;
 public class ConversionActivity extends AppCompatActivity {
     String fiatCode;
     String cryptoCode;
-    TextView tv_btc_rate;
+    TextView tv_crypto_rate;
+    TextView tv_crypto_rate_title;
     EditText et_coin_amount;
     TextView tv_total_amount;
     TextView tv_main_title;
@@ -38,22 +39,26 @@ public class ConversionActivity extends AppCompatActivity {
 
         // build the main title of the activity
         tv_main_title = (TextView)findViewById(R.id.tv_main_title);
-        tv_main_title.setText(getString(R.string.conversion_main_title) + cryptoCode + getString(R.string.conversion_to)+ fiatCode);
+        tv_main_title.setText(getString(R.string.conversion_main_title)+ " " + cryptoCode + " " + getString(R.string.conversion_to) + " "+ fiatCode);
 
         // build the main title of the activity
         tv_sub_title = (TextView)findViewById(R.id.tv_sub_title);
-        tv_sub_title.setText(getString(R.string.conversion_sub_title) + cryptoCode);
+        tv_sub_title.setText(getString(R.string.conversion_sub_title) + " " +cryptoCode);
 
         // edit text for entering amount of bitcoin
         et_coin_amount = (EditText) findViewById(R.id.et_coin_amount);
 
         // text view that display total value cryptocurrency entered in fiat currency
         tv_total_amount = (TextView) findViewById(R.id.tv_total_amount);
-        tv_total_amount.setText(fiatCode);
 
         // this text view display rate of fiat currency per cryptocurrency
-        tv_btc_rate = (TextView) findViewById(R.id.tv_btc_rate);
-        tv_btc_rate.setText(cryptoCode);
+        tv_crypto_rate = (TextView) findViewById(R.id.tv_crypto_rate);
+
+        tv_crypto_rate_title = (TextView)findViewById(R.id.crypto_rate_title);
+        tv_crypto_rate_title.setText(getString(R.string.crypro_rate_title)+ " " + cryptoCode);
+
+
+
 
         // run background network task to retrieve exchange rate information on text change
         et_coin_amount.addTextChangedListener(new TextWatcher() {
@@ -82,7 +87,7 @@ public class ConversionActivity extends AppCompatActivity {
                         task.execute(cryptoCode, fiatCode);
                     } else {
                         tv_total_amount.setText(getString(R.string.zero_default));
-                        tv_btc_rate.setText(getString(R.string.zero_default));
+                        tv_crypto_rate.setText(getString(R.string.zero_default));
                     }
 
                 } else {
@@ -114,7 +119,7 @@ public class ConversionActivity extends AppCompatActivity {
             super.onPostExecute(exchangeRate);
             if (exchangeRate != null) {
 
-                tv_btc_rate.setText(GeneralUtils.GetNumberFormatForCurrencyCode(exchangeRate.getFiatCurrency(),fiatCode));
+                tv_crypto_rate.setText(GeneralUtils.GetNumberFormatForCurrencyCode(exchangeRate.getFiatCurrency(),fiatCode));
 
                 if (!TextUtils.isEmpty(et_coin_amount.getText().toString())) {
                     double crytoAmount = Double.valueOf(et_coin_amount.getText().toString());
