@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        // enable up button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // get reference to button and linearlayout
          btn_load_card = (Button)findViewById(R.id.btn_load_card);
